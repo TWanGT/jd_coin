@@ -14,6 +14,10 @@ from requests.cookies import RequestsCookieJar
 
 from config import config
 
+import urllib3
+# 禁用安全请求警告
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 # 过滤掉一些不需要的 Qt WebEngine 日志输出
 # https://stackoverflow.com/questions/35894171/redirect-qdebug-output-to-file-with-pyqt5
 QtCore.qInstallMessageHandler(lambda *args: None)
@@ -39,7 +43,7 @@ class MobileBrowser(QWebEngineView):
         # 当到达 target 时自动关闭浏览器窗口
         self.target = None
 
-    def config(self):
+    def  config(self):
         self.page().profile().setHttpUserAgent(config.ua)
 
         proxies = urllib.request.getproxies()
@@ -135,7 +139,7 @@ class MobileBrowser(QWebEngineView):
 
             timer = QTimer(self)
             timer.timeout.connect(self.close)
-            timer.start(1000)
+            timer.start(5000)
 
 
 def get_cookies(url):
@@ -162,8 +166,12 @@ def get_cookies(url):
 
 
 def main():
-    test_url = 'https://m.jd.com'
-    cookies = get_cookies(test_url)
+    # test_url = 'https://m.jd.com'
+    # cookies = get_cookies(test_url)
+    # print(__class__)
+    print(__package__)
+    # print(__path__)
+    print(__name__)
 
 
 if __name__ == '__main__':

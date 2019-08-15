@@ -10,7 +10,8 @@ class DoubleSign(Daka):
     job_name = '双签赢奖励'
 
     index_url = 'https://ljd.m.jd.com/countersign/index.action'
-    sign_url = 'https://ljd.m.jd.com/countersign/receiveAward.json'
+    # sign_url = 'https://ljd.m.jd.com/countersign/receiveAward.json'
+    sign_url = 'https://jdqd.jd.com/poststring'
     test_url = index_url
 
     def is_signed(self):

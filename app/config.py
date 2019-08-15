@@ -14,7 +14,7 @@ class Config:
         self.debug = False
         self.log_format = log_format
         self.ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0) Gecko/20100101 Firefox/52.0'
-
+        # self.ua = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148/application=JDJR-App&deviceId=01865C86-9AB1-4F17-8FF6-8BD111E9036D&clientType=ios&iosType=iphone&clientVersion=5.2.32&HiClVersion=5.2.32&isUpdate=0&osVersion=12.4&osName=iOS&platform=iPhone 7 Plus (A1661/A1785/A1786)&screen=736*414&src=App Store&ip=2409:8954:3060:18b8:1c91:bd12:7cc3:351d&mac=02:00:00:00:00:00&netWork=1&netWorkType=1&stockSDK=stocksdk-iphone_3.0.0&sPoint=MTUwMDMjIzcxOTUzX3sicG9zaWQiOiIqMTMwNzYqMjM5MzgiLCJzeXNDb2RlIjoibWMtbWt0LWNtcyIsIm1hdGlkIjoiMzAy5qih5p2%2FKuavj%2BaXpeetvuWIsOmihuemj%2BWIqSoiLCJwYWdpZCI6IjEiLCJvcmRpZCI6IiozKjAtdG9wUmVnaW9uIn0%3D&jdPay=(*#@jdPaySDK*#@jdPayChannel=jdfinance&jdPayChannelVersion=5.2.32&jdPaySdkVersion=2.23.3.0&jdPayClientName=iOS*#@jdPaySDK*#@)',
         self.jd = {
             'username': '',
             'password': ''

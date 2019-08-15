@@ -55,6 +55,7 @@ def make_session() -> requests.Session:
             bytes = data_file.read_bytes()
             cookies = pickle.loads(bytes)
             session.cookies = cookies
+            session.verify=False
             logging.info('# 从文件加载 cookies 成功.')
         except Exception as e:
             logging.info('# 未能成功载入 cookies, 从头开始~')

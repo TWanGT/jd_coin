@@ -11,7 +11,8 @@ class BeanApp(Daka):
     index_url = 'https://bean.m.jd.com'
     info_url = 'https://api.m.jd.com/client.action?functionId=findBeanIndex'
     sign_url = 'https://api.m.jd.com/client.action?functionId=signBeanIndex'
-    test_url = 'https://home.m.jd.com'
+    test_url = 'https://plogin.m.jd.com/user/login.action'
+    # test_url = 'https://home.m.jd.com'
 
     client_info = {
         'client': 'ld',

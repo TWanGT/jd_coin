@@ -11,7 +11,8 @@ class Daka:
     job_name = '小白卡钢镚打卡'
 
     index_url = 'https://bk.jd.com/m/channel/login/daka.html'
-    login_url = 'https://home.m.jd.com'
+    # login_url = 'https://home.m.jd.com'
+    login_url = 'https://plogin.m.jd.com/user/login.action'
     sign_url = 'https://bk.jd.com/m/channel/login/clock.html'
     test_url = index_url
     job_gb_url = 'https://bk.jd.com/m/channel/login/recDakaGb.html'
@@ -109,6 +110,7 @@ class Daka:
             return False
 
     def fetch_data(self, url, payload=None):
+        self.logger.info('请求地址: {}'.format(url))
         r = self.session.get(url, params=payload)
 
         try:
