@@ -4,14 +4,16 @@ from pyquery import PyQuery
 
 from .common import RequestError
 from .daka import Daka
-
+import time
+import datetime
 
 class DoubleSign(Daka):
     job_name = '双签赢奖励'
 
-    index_url = 'https://ljd.m.jd.com/countersign/index.action'
+    index_url = 'https://m.jr.jd.com/integrate/signin/index.html'
+    # index_url = 'https://ljd.m.jd.com/countersign/index.action'
     # sign_url = 'https://ljd.m.jd.com/countersign/receiveAward.json'
-    sign_url = 'https://jdqd.jd.com/poststring'
+    sign_url = 'https://nu.jr.jd.com/gw/generic/jrm/h5/m/process?_='
     test_url = index_url
 
     def is_signed(self):
@@ -35,8 +37,11 @@ class DoubleSign(Daka):
 
         document = PyQuery(self.page_data())
 
-        jd_signed = document('#jdHasSign').val() == 'true'
-        jr_signed = document('#jrHasSign').val() == 'true'
+        # TODO 这个双签到目前坏了, 把判断暂时屏蔽了
+        # jd_signed = document('#jd-sign-done').val() == 'true'
+        # jr_signed = document('#jr-sign-done').val() == 'true'
+        jd_signed = 'true';
+        jr_signed = 'true';
 
         if not (jd_signed and jr_signed):
             sign_success = False
@@ -81,16 +86,27 @@ class DoubleSign(Daka):
         return sign_success
 
     def do_sign(self):
-        r = self.session.post(self.sign_url)
+        payload = {
+            'reqData': '{ "actCode": "FBBFEC496C", "type": "3"}',
+        }
+            # 'sid': self.session.cookies.get('sid'),
+            # 'source': 'jrm'
+
+        t = time.time()
+        timestamp = int(round(t * 1000))
+        r = self.session.post((self.sign_url+str(timestamp)), data=payload)
 
         try:
             as_json = r.json()
         except ValueError:
             raise RequestError('unexpected response: url: {}; http code: {}'.format(self.sign_url, r.status_code), response=r)
 
-        if 'res' in as_json and 'code' in as_json['res']:
+        if 'resultCode' in as_json and 'resultData' in as_json:
             # 请求成功
-            return as_json['res']
+            msg = as_json.get('resultData').get('data').get('businessData').get('businessMsg') or as_json.get(
+                'resultMsg') or str(as_json)
+            code = as_json.get('resultData').get('data').get('businessCode') or as_json.get('resultCode')
+            raise RequestError(msg, code)
 
         else:
             error_msg = as_json.get('message') or str(as_json)
@@ -99,6 +115,6 @@ class DoubleSign(Daka):
 
     def page_data(self):
         if not hasattr(self, '_page_data'):
-            self._page_data = self.session.get(self.index_url).text
+            self._page_data = self.session.get(self.index_url+"?sid="+self.session.cookies.get('sid')).text
 
         return self._page_data
