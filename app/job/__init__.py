@@ -12,12 +12,13 @@ from .double_sign import DoubleSign
 from .data_station import DataStation
 from .jr_fanpai import fanpai
 from .jr_promote_amount import baitiao
+from .plusSign import plusSign
 
 __all__ = ['jobs_all', 'logger']
 
 jobs_mobile = [DakaApp, BeanApp, DataStation]
 jobs_web = [Bean, SignJR, RedPacket, fanpai, baitiao]
-jobs_all = jobs_mobile + jobs_web + [DoubleSign]
+jobs_all = jobs_mobile + jobs_web + [DoubleSign, plusSign]
 
 
 def set_logger():
