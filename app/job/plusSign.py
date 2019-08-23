@@ -65,7 +65,7 @@ class plusSign(Daka):
                 self.logger.info("{}, {}".format(self.job_name, as_json.get('resultTips')))
                 break;
 
-                json_data = as_json.get('data')
+            json_data = as_json.get('data')
             if 'data' in as_json and 'luckyBox' in json_data:
                 num = num + 1
                 # 请求成功
@@ -73,14 +73,14 @@ class plusSign(Daka):
 
                 if 'prizeBean' in json_data:
                     jd_count=json_data.get('prizeBean').get('count')
-                    self.logger('成功获取京豆{}个'.format(jd_count))
+                    self.logger.info('成功获取京豆{}个'.format(jd_count))
                 else:
                     prizeCoupon=json_data.get('prizeCoupon')
                     endTime=prizeCoupon.get('endTime')
                     quota=prizeCoupon.get('quota')
                     discount=prizeCoupon.get('discount')
                     limitStr=prizeCoupon.get('limitStr')
-                    self.logger('领取到{}-{}的优惠券, 使用范围:{}, 截止日期:{}'.format(quota, discount, limitStr, endTime))
+                    self.logger.info('领取到{}-{}的优惠券, 使用范围:{}, 截止日期:{}'.format(quota, discount, limitStr, endTime))
 
             if num > 0:
                 msg = self.job_name + "成功"
@@ -88,7 +88,7 @@ class plusSign(Daka):
             else:
                 msg = self.job_name + "失败"
                 code = "fail"
-            raise RequestError(msg, code)
+                raise RequestError(msg, code)
     def page_data(self):
         if not hasattr(self, '_page_data'):
             self._page_data = self.session.get(self.index_url+"?sid="+self.session.cookies.get('sid')).text

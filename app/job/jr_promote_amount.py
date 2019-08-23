@@ -24,7 +24,6 @@ class baitiao(Daka):
         sign_data = {}
 
         try:
-            # 参见 daka_app_min.js -> h.getSign, 第 1825 行开始
             r = self.session.post(self.sign_url, data=payload)
             as_json = r.json()
 

@@ -54,32 +54,32 @@ class DoubleSign(Daka):
                 self.logger.error('双签失败: {}'.format(e.message))
                 return False
 
-            if res['code'] == '0':
-                award_data = res.get('data')
-
-                if not award_data:
-                    message = '运气不佳，领到一个空空的礼包'
-
-                else:
-                    award = award_data[0]
-                    sign_success = True
-                    message = '领到 {} 个{}'.format(award['awardCount'], award['awardName'])
-
-            else:
-                # 活动不定时开启，将活动时间未开始/已结束等情况都视作签到成功
-
-                if res['code'] == 'DS102':
-                    message = '来早了，活动还未开始'
-                elif res['code'] == 'DS103':
-                    message = '来晚了，活动已经结束了'
-                elif res['code'] == 'DS104':
-                    message = '运气不佳，领到一个空空的礼包'
-                elif res['code'] == 'DS106':
-                    sign_success = False
-                    message = '完成双签才可领取礼包'
-                else:
-                    sign_success = False
-                    message = '未知错误，Code={}'.format(res['code'])
+            # if res['code'] == '0':
+            #     award_data = res.get('data')
+            #
+            #     if not award_data:
+            #         message = '运气不佳，领到一个空空的礼包'
+            #
+            #     else:
+            #         award = award_data[0]
+            #         sign_success = True
+            #         message = '领到 {} 个{}'.format(award['awardCount'], award['awardName'])
+            #
+            # else:
+            #     # 活动不定时开启，将活动时间未开始/已结束等情况都视作签到成功
+            #
+            #     if res['code'] == 'DS102':
+            #         message = '来早了，活动还未开始'
+            #     elif res['code'] == 'DS103':
+            #         message = '来晚了，活动已经结束了'
+            #     elif res['code'] == 'DS104':
+            #         message = '运气不佳，领到一个空空的礼包'
+            #     elif res['code'] == 'DS106':
+            #         sign_success = False
+            #         message = '完成双签才可领取礼包'
+            #     else:
+            #         sign_success = False
+            #         message = '未知错误，Code={}'.format(res['code'])
 
         self.logger.info('双签成功: {}; Message: {}'.format(sign_success, message))
 
@@ -106,12 +106,9 @@ class DoubleSign(Daka):
             msg = as_json.get('resultData').get('data').get('businessData').get('businessMsg') or as_json.get(
                 'resultMsg') or str(as_json)
             code = as_json.get('resultData').get('data').get('businessCode') or as_json.get('resultCode')
-            raise RequestError(msg, code)
-
         else:
             error_msg = as_json.get('message') or str(as_json)
             error_code = as_json.get('businessCode') or as_json.get('code')
-            raise RequestError(error_msg, error_code)
 
     def page_data(self):
         if not hasattr(self, '_page_data'):
