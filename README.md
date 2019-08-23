@@ -2,6 +2,9 @@
 
 [![Python](https://img.shields.io/badge/Python-3.5%2B-blue.svg)](https://www.python.org)
 
+> 基于这个老哥的, [传送门](https://github.com/CaoZ/JD-Coin)
+> `CaoZ` 已经2年多没有维护了, 在 `CaoZ` 的基础上修复了一些因为变动导致失效的签到点, 并新增了一些
+> 我主要用的是方法一(基于内置浏览器实现签到), 方法二没有进行维护
 
 ### 使用方法：
 
@@ -102,6 +105,9 @@
 | SignJR | 京东金融签到领奖励 |
 | DataStation | 流量加油站签到领流量 |
 | RedPacket | 京东小金库现金红包（已下线） |
+| plusSign | 京东会员领京豆(摇一摇) |
+| jr_fanpai | 京东金融翻牌） |
+| payBack | 京东支付返京豆 |
 
 <br>
 
@@ -116,35 +122,62 @@
 ## Example
 
 ```log
-2017-03-15 10:38:48,711 root[config] INFO: 使用配置文件 "config.json".
-2017-03-15 10:38:48,745 root[main] INFO: # 从文件加载 cookies 成功.
-2017-03-15 10:38:48,745 jobs[daka] INFO: Job Start: 小白卡钢镚打卡
-2017-03-15 10:38:49,734 jobs[daka] INFO: 登录状态: True
-2017-03-15 10:38:50,642 jobs[daka] INFO: 今日已打卡: False; 打卡天数: 2
-2017-03-15 10:38:50,742 jobs[daka] INFO: 打卡成功: True; Message: 打卡成功
-2017-03-15 10:38:50,743 jobs[daka] INFO: Job End.
-2017-03-15 10:38:50,743 jobs[daka] INFO: Job Start: 京东客户端钢镚打卡
-2017-03-15 10:38:50,843 jobs[daka] INFO: 登录状态: True
-2017-03-15 10:38:50,923 jobs[daka_app] INFO: 今日已打卡: False; 打卡天数: 2
-2017-03-15 10:38:51,105 jobs[daka_app] INFO: 打卡成功: True; Message: 打卡成功,成功领取了0.1个钢镚！
-2017-03-15 10:38:51,105 jobs[daka] INFO: Job End.
-2017-03-15 10:38:51,105 jobs[daka] INFO: Job Start: 京东客户端签到领京豆
-2017-03-15 10:38:51,249 jobs[daka] INFO: 登录状态: True
-2017-03-15 10:38:51,344 jobs[bean_app] INFO: 今日已签到: False; 签到天数: 2
-2017-03-15 10:38:51,452 jobs[bean_app] INFO: 签到成功; 获得 2 个京豆.
-2017-03-15 10:38:51,452 jobs[daka] INFO: Job End.
-2017-03-15 10:38:51,452 jobs[daka] INFO: Job Start: 京东会员页签到领京豆
-2017-03-15 10:38:51,967 jobs[daka] INFO: 登录状态: True
-2017-03-15 10:38:52,472 jobs[bean] INFO: 今日已签到: False; 现在有 1087 个京豆.
-2017-03-15 10:38:52,922 jobs[bean] INFO: 签到成功，获得 20 个京豆.
-2017-03-15 10:38:52,923 jobs[daka] INFO: Job End.
-2017-03-15 10:38:52,923 jobs[daka] INFO: Job Start: 京东金融签到领京豆
-2017-03-15 10:38:53,514 jobs[daka] INFO: 登录状态: True
-2017-03-15 10:38:53,582 jobs[bean_jr] INFO: 今天已签到: False; 签到天数: 2
-2017-03-15 10:38:53,681 jobs[bean_jr] INFO: 签到成功，获得 5 个京豆.
-2017-03-15 10:38:53,681 jobs[daka] INFO: Job End.
+2019-08-23 18:26:44,626 root[config] INFO: 使用配置文件 "config.json".
+2019-08-23 18:26:45,469 root[main] INFO: # 从文件加载 cookies 成功.
+2019-08-23 18:26:45,469 jobs[daka] INFO: Job Start: 京东客户端钢镚打卡
+2019-08-23 18:26:45,793 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:45,793 jobs[daka_app] INFO: 今日已打卡: True
+2019-08-23 18:26:45,794 jobs[daka] INFO: Job End.
+2019-08-23 18:26:45,794 jobs[daka] INFO: Job Start: 京东客户端签到领京豆
+2019-08-23 18:26:46,086 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:46,497 jobs[bean_app] INFO: 今日已签到: True; 签到天数: 6; 现有京豆: 2038
+2019-08-23 18:26:46,497 jobs[daka] INFO: Job End.
+2019-08-23 18:26:46,497 jobs[daka] INFO: Job Start: 流量加油站签到领流量
+2019-08-23 18:26:46,777 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:47,098 jobs[data_station] INFO: 今日已签到: True; Message: 您今日已签到.
+2019-08-23 18:26:47,098 jobs[daka] INFO: Job End.
+2019-08-23 18:26:47,099 jobs[daka] INFO: Job Start: 京东会员页签到领京豆
+2019-08-23 18:26:47,406 jobs[daka] INFO: 登录状态: False
+2019-08-23 18:26:47,406 jobs[daka] INFO: 进行登录...
+[30443:24579:0823/182649.631287:ERROR:adm_helpers.cc(62)] Failed to query stereo recording.
+2019-08-23 18:26:50.181 QtWebEngineProcess[30443:3864402] Couldn't set selectedTextColor from default ()
+[30442:45059:0823/182650.266490:ERROR:service_manager.cc(156)] Connection InterfaceProviderSpec prevented service: content_renderer from binding interface: blink::mojom::BudgetService exposed by: content_browser
+[30443:775:0823/182650.309632:ERROR:BudgetService.cpp(167)] Unable to connect to the Mojo BudgetService.
+[30442:45059:0823/182654.146448:ERROR:service_manager.cc(156)] Connection InterfaceProviderSpec prevented service: content_renderer from binding interface: blink::mojom::BudgetService exposed by: content_browser
+[30443:775:0823/182654.150090:ERROR:BudgetService.cpp(167)] Unable to connect to the Mojo BudgetService.
+2019-08-23 18:26:56,301 jobs[daka] INFO: 登录成功
+2019-08-23 18:26:56,573 jobs[bean] INFO: 今日已签到: False; 现在有 2038 个京豆.
+2019-08-23 18:26:56,710 jobs[bean] INFO: 已领取 1 京豆，请明日再来
+2019-08-23 18:26:56,711 jobs[daka] INFO: Job End.
+2019-08-23 18:26:56,711 jobs[daka] INFO: Job Start: 京东金融签到领奖励
+2019-08-23 18:26:56,972 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:57,176 jobs[sign_jr] INFO: 今日已签到: True; 签到天数: 5; 现有钢镚: 3.55
+2019-08-23 18:26:57,176 jobs[daka] INFO: Job End.
+2019-08-23 18:26:57,176 jobs[daka] INFO: Job Start: 京东小金库现金红包
+2019-08-23 18:26:57,235 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:57,287 jobs[red_packet] ERROR: 领取失败: None
+2019-08-23 18:26:57,287 jobs[daka] INFO: Job End.
+2019-08-23 18:26:57,287 jobs[daka] INFO: Job Start: 京东金融翻牌
+2019-08-23 18:26:57,365 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:57,366 jobs[jr_fanpai] INFO: 今日已翻牌: True
+2019-08-23 18:26:57,366 jobs[daka] INFO: Job End.
+2019-08-23 18:26:57,366 jobs[daka] INFO: Job Start: 双签赢奖励
+2019-08-23 18:26:57,528 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:57,585 jobs[double_sign] INFO: 今日已双签: False
+2019-08-23 18:26:57,856 jobs[double_sign] INFO: 双签成功: True; Message:
+2019-08-23 18:26:57,856 jobs[daka] INFO: Job End.
+2019-08-23 18:26:57,856 jobs[daka] INFO: Job Start: 京东会员领京豆(摇一摇)
+2019-08-23 18:26:58,080 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:58,273 jobs[plusSign] INFO: 今日已京东会员领京豆(摇一摇): False
+2019-08-23 18:26:58,345 jobs[plusSign] INFO: 京东会员领京豆(摇一摇), 无免费次数可用
+2019-08-23 18:26:58,345 jobs[plusSign] INFO: 京东会员领京豆(摇一摇)成功: True; Message:
+2019-08-23 18:26:58,345 jobs[daka] INFO: Job End.
+2019-08-23 18:26:58,345 jobs[daka] INFO: Job Start: 京东支付返京豆
+2019-08-23 18:26:58,523 jobs[daka] INFO: 登录状态: True
+2019-08-23 18:26:58,653 jobs[payBack] INFO: 京东支付返京豆-没有可领取的京豆--视为已经领取完了
+2019-08-23 18:26:58,653 jobs[daka] INFO: Job End.
 =================================
-= 任务数: 5; 失败数: 0
-= 全部成功 ~
+= 任务数: 10; 失败数: 1
+= 失败的任务: ['京东小金库现金红包']
 =================================
 ```
