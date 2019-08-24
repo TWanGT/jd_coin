@@ -139,7 +139,7 @@ class MobileBrowser(QWebEngineView):
 
             timer = QTimer(self)
             timer.timeout.connect(self.close)
-            timer.start(5000)
+            timer.start(10000)
 
 
 def get_cookies(url):
