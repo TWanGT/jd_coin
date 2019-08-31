@@ -14,10 +14,11 @@ from .jr_fanpai import fanpai
 from .jr_promote_amount import baitiao
 from .plusSign import plusSign
 from .payBack import payBack
+from .plantTree import plantTree
 
 __all__ = ['jobs_all', 'logger']
 
-jobs_mobile = [DakaApp, BeanApp, DataStation]
+jobs_mobile = [DakaApp, BeanApp, DataStation, plantTree]
 jobs_web = [Bean, SignJR, RedPacket, fanpai, baitiao]
 jobs_all = jobs_mobile + jobs_web + [DoubleSign, plusSign, payBack]
 

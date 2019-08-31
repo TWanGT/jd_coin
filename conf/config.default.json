@@ -1,10 +1,10 @@
 {
   "debug": false,
   "jd": {
-    "username": "F*7$dFgG_eH8eB",
-    "password": "Vq$7!HZ?ReGBE"
+    "username": "",
+    "password": ""
   },
    "jobs_skip": ["DataStation", "DakaApp", "BeanApp", "Bean",
     "SignJR", "DoubleSign", "fanpai", "RedPacket",
-    "baitiao", "plusSign", "payBack"]
+    "baitiao", "plusSign", "payBack", "plantTree"]
 }
