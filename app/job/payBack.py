@@ -24,6 +24,22 @@ class payBack(Daka):
     #     },
     #     "channelEncrypt": 0
     # }
+    #
+    # {
+    #     "resultCode": 0,
+    #     "resultMsg": "操作成功",
+    #     "resultData": {
+    #         "acquireCodes": [1],
+    #         "jingdouRecordCount": 361,
+    #         "code": 1,
+    #         "currentjingdoucount": 2,
+    #         "successJd": 2,
+    #         "orderSucessCount": 35,
+    #         "message": "领取成功，未发放",
+    #         "failJd": 0
+    #     },
+    #     "channelEncrypt": 0
+    # }
 
     def is_signed(self):
         signed = False
@@ -61,8 +77,12 @@ class payBack(Daka):
         return sign_success
 
     def do_sign(self):
-        r = self.session.get((self.sign_url+str(jdUtil.timeStamp(self))))
+        # reqData {"list": ["jd_4320322a504a5115543919083019043708272"]}
+        payload = {
+            'reqData': '{"list": ["jd_4320322a504a5115543919083019043708272"]}',
+        }
 
+        r = self.session.post((self.sign_url+str(jdUtil.timeStamp(self))), data=payload)
         try:
             as_json = r.json()
         except ValueError:
